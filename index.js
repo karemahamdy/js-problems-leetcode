@@ -48,3 +48,62 @@ var minimumOperations = function(nums) {
   }
    return operation
 };
+
+// 2413. Smallest Even Multiple
+// Given a positive integer n, return the smallest positive integer that is a multiple of both 2 and n.
+var smallestEvenMultiple = function(n) {
+  if ( n %2 === 0 ) {
+      return n
+  } else {
+      return 2*n
+  }
+};
+
+//1929. Concatenation of Array
+//Given an integer array nums of length n, you want to create an array ans of length 2n where ans[i] == nums[i] and ans[i + n] == nums[i] for 0 <= i < n (0-indexed).
+// Specifically, ans is the concatenation of two nums arrays.
+// Return the array ans.
+var getConcatenation = function(nums) {
+  nums = [1,2,3]
+  let num = nums
+  let number = num.concat(nums)
+   console.log(number)
+};
+
+getConcatenation()
+
+// 1470. Shuffle the Array
+// Given the array nums consisting of 2n elements in the form [x1,x2,...,xn,y1,y2,...,yn].
+// Return the array in the form [x1,y1,x2,y2,...,xn,yn].
+// nums = [2,5,1,3,4,7], n = 3
+
+var shuffle = function(nums, n) {
+  const shuffledArray = [];
+     for (let i = 0; i < n; i++) {
+      shuffledArray.push(nums[i]);
+       shuffledArray.push(nums[n + i]);
+  }
+   return shuffledArray;
+};
+
+// 2011. Final Value of Variable After Performing Operations
+// There is a programming language with only four operations and one variable X:
+
+// ++X and X++ increments the value of the variable X by 1.
+// --X and X-- decrements the value of the variable X by 1.
+// Initially, the value of X is 0.
+
+// Given an array of strings operations containing a list of operations, return the final value of X after performing all the operations.
+
+var finalValueAfterOperations = function(operations) {
+  let  n = 0 
+
+for (let operation of operations) {
+     if (operation === "X++" || operation === "++X") {
+         n++;
+     } else if (operation === "X--" || operation === "--X") {
+         n--;
+     }
+ }
+ return n;
+}
