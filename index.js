@@ -107,3 +107,12 @@ for (let operation of operations) {
  }
  return n;
 }
+
+// 1688. Count of Matches in Tournament
+
+var numberOfMatches = function(n) {
+  if (n === 1) return 0;
+  return (n % 2 === 0) ? n / 2 + numberOfMatches(n / 2) : (n - 1) / 2 + numberOfMatches((n - 1) / 2 + 1 )
+  
+  };
+console.log(numberOfMatches(14))
