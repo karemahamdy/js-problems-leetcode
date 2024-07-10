@@ -145,4 +145,12 @@ var minOperations = function(logs) {
 logs =["d1/","d2/","../","d21/","./"]
 console.log(minOperations(logs))
 
+// 1929. Concatenation of Array
+var getConcatenation = function (nums) {
+let arr = [...nums, ...nums]
+// let arr = nums.concat(nums)
+return arr
+}
+nums = [1,2,1]
 
+console.log(getConcatenation(nums))
