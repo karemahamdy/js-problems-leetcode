@@ -128,3 +128,21 @@ var scoreOfString = function(s) {
    }
       return score
 };
+
+// 1598. Crawler Log Folder
+var minOperations = function(logs) {
+  folderDepth = 0
+  for (const currentOperation of logs) {
+     if (currentOperation === "../") {
+        if (folderDepth > 0) folderDepth--;
+     } else if (currentOperation !== "./"){
+     folderDepth ++
+     }
+}
+  return folderDepth;
+};
+
+logs =["d1/","d2/","../","d21/","./"]
+console.log(minOperations(logs))
+
+
