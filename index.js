@@ -156,7 +156,7 @@ nums = [1,2,1]
 console.log(getConcatenation(nums))
 
 
-//1550. Three Consecutive Odds
+// 1550. Three Consecutive Odds
 var threeConsecutiveOdds = function(arr) {
   let count = 0;
   for(let i=0; i<arr.length; i++) {
@@ -166,3 +166,17 @@ var threeConsecutiveOdds = function(arr) {
   }
   return false;
 };
+
+//2942. Find Words Containing Character
+var findWordsContaining = function(words, x) {
+  // check word = x
+  // true -- return index 
+  // [index+]
+    let ans = [];
+     for (let i = 0; i < words.length; i++) {
+     words[i].includes(x)?ans.push(i): ans
+     } 
+     return  ans  
+};
+
+findWordsContaining()
