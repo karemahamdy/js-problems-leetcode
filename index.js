@@ -180,3 +180,16 @@ var findWordsContaining = function(words, x) {
 };
 
 findWordsContaining()
+
+//1672. Richest Customer Wealth
+var maximumWealth = function(accounts) {
+  // index 0 = [] = join + number + op+
+  //index 1 = [] = join + number + op+
+  // return max
+      arr=[]
+  for(let i=0;i<accounts.length;i++){
+      arr.push(accounts[i].reduce((acc,cur)=> acc+cur,0))
+  }
+  return Math.max(...arr)
+
+};
