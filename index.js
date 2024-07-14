@@ -193,3 +193,15 @@ var maximumWealth = function(accounts) {
   return Math.max(...arr)
 
 };
+
+// 2652. Sum Multiples
+var sumOfMultiples = function(n) {
+  // 3 5 7 || 
+  // loop in it and check 3 5 7
+  let sum = 0
+  for(let i =0; i<=n; i++) {
+      if(i % 3 === 0 || i % 5 === 0 || i % 7 === 0)
+    sum  = sum + i
+  }
+  return sum
+};
