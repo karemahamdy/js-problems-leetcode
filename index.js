@@ -217,3 +217,17 @@ var mostWordsFound = sentences => sentences.map(item => item.split(' ')).sort((a
 
 // 3146. Permutation Difference between Two Strings
 const findPermutationDifference = (s, t) => [...s].reduce((acc,el,id) => acc+= Math.abs(id - t.indexOf(el)),0);
+
+
+// 1108. Defanging an IP Address
+var defangIPaddr = function(address) {
+  let split = address.split('')
+   for(let i=0;i<split.length;i++){
+    if (split[i]=="."){
+        split[i] = "[.]"
+        var join = split.join('')
+         console.log(join)
+    }
+   }
+   return join
+};
