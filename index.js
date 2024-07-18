@@ -205,3 +205,11 @@ var sumOfMultiples = function(n) {
   }
   return sum
 };
+
+// 2114. Maximum Number of Words Found in Sentences
+/**
+ * @param {string[]} sentences
+ * @return {number}
+ */
+
+var mostWordsFound = sentences => sentences.map(item => item.split(' ')).sort((a,b) => b.length - a.length)[0].length
