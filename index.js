@@ -213,3 +213,7 @@ var sumOfMultiples = function(n) {
  */
 
 var mostWordsFound = sentences => sentences.map(item => item.split(' ')).sort((a,b) => b.length - a.length)[0].length
+
+
+// 3146. Permutation Difference between Two Strings
+const findPermutationDifference = (s, t) => [...s].reduce((acc,el,id) => acc+= Math.abs(id - t.indexOf(el)),0);
