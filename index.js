@@ -242,3 +242,8 @@ var numJewelsInStones = function(jewels, stones) {
      }
      return count;
  };
+
+ //1678. Goal Parser Interpretation
+ var interpret = function(command) {
+  return command.split("()").join("o").split("(al)").join("al");
+};
