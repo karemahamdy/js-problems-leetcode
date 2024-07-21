@@ -279,3 +279,10 @@ function findLargest(grid, row, col) {
   }
   return best;
 }
+
+// 2798. Number of Employees Who Met the Target
+var numberOfEmployeesWhoMetTarget = function(hours, target) {
+  let count = 0;
+  hours.forEach(e => (e >= target ? count++ : count));
+  return count;
+};
