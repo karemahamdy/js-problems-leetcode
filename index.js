@@ -301,3 +301,15 @@ var kidsWithCandies = function(candies, extraCandies) {
 
   return result
 };
+
+
+// 2535. Difference Between Element Sum and Digit Sum of an Array
+var differenceOfSum = function(nums) {
+  const first = nums.reduce((state,action) => {
+      return state + action
+  },0)
+  const second = nums.join("").split("").reduce((state,action) => {
+      return parseInt(state) + parseInt(action)
+  },0)
+  return Math.abs(first-second)
+};
