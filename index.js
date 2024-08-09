@@ -313,3 +313,10 @@ var differenceOfSum = function(nums) {
   },0)
   return Math.abs(first-second)
 };
+
+
+//3099. Harshad Number
+var sumOfTheDigitsOfHarshadNumber = function(x) {
+  let count = String(x).split('').reduce((prev, next) => prev + Number(next), 0);
+ return x % count === 0 ? count : - 1;
+};
