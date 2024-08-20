@@ -320,3 +320,16 @@ var sumOfTheDigitsOfHarshadNumber = function(x) {
   let count = String(x).split('').reduce((prev, next) => prev + Number(next), 0);
  return x % count === 0 ? count : - 1;
 };
+
+
+/// 231. Power of Two
+// Given an integer n, return true if it is a power of two. Otherwise, return false.
+// An integer n is a power of two, if there exists an integer x such that n == 2x.
+
+var isPowerOfTwo = function(n) {
+  // log 
+  return n>0 && Math.log2(n) % 1 === 0
+};
+
+
+ 
