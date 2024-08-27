@@ -340,3 +340,15 @@ var daysBetweenDates = function(date1, date2) {
   let mill = 1000 * 60 * 60 * 24 
   return Math.abs((new Date(date1).getTime() - new Date(date2).getTime() )/ mill)
 };
+
+
+// 1920. Build Array from Permutation
+
+var buildArray = function(nums) {
+  let ans = []
+  for (let i = 0 ; i< nums.length ; i++ ) {
+   ans[i] =  nums[nums[i]]
+  } 
+  return ans
+};
+
