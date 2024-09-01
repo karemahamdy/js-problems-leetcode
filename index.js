@@ -352,3 +352,18 @@ var buildArray = function(nums) {
   return ans
 };
 
+//2022. Convert 1D Array Into 2D Array
+
+var construct2DArray = function (or, m, n) {
+  if (m * n !== or.length) {
+      return [];
+  }
+  let arr = [];
+  for (let i = 0, x = 0; i < m; i++) {
+      arr[i] = [];
+      for (let j = 0; j < n; j++) {
+          arr[i][j] = or[x++];
+      }
+  }
+  return arr;
+};
