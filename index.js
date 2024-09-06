@@ -367,3 +367,13 @@ var construct2DArray = function (or, m, n) {
   }
   return arr;
 };
+
+// 66. Plus One
+var plusOne = function(digits) {
+  // join + num + 1  + arr again 
+let c = digits.join("")
+let n = BigInt(c) + BigInt(1);
+return Array.from(String(n), Number);
+};
+digits = [4,3,2,1]
+console.log(plusOne(digits))
