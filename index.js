@@ -472,3 +472,20 @@ function memoize(func) {
   };
   return newFunction;
 }
+
+
+// 2618. Check if Object Instance of Class
+
+var checkIfInstanceOf = function (obj, classFunction) {
+  while (obj != null) {
+    if (obj.constructor === classFunction) {
+      return true;
+    }
+
+    obj = Object.getPrototypeOf(obj);
+
+  }
+
+  return false;
+};
+
