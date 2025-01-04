@@ -488,7 +488,6 @@ var checkIfInstanceOf = function (obj, classFunction) {
 
   return false;
 };
-
 // isAnagram
 var isAnagram = function (s, t) {
   s = s.split("").sort()
