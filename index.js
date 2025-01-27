@@ -515,3 +515,30 @@ let gcdOfStrings = function(str1, str2) {
  let gcdLength =    gcd(str1.length, str2.length);
 return str1.substring(0, gcdLength);
 };
+
+
+
+function canPlaceFlowers(flowerbed, n) {
+  let count = 0; 
+  if (n === 0 ) {
+      return true
+  } else {
+  for (let i = 0; i < flowerbed.length; i++) {
+    
+      if (flowerbed[i] === 0) {
+               let prevEmpty = (i === 0 || flowerbed[i - 1] === 0); 
+          let nextEmpty = (i === flowerbed.length - 1 || flowerbed[i + 1] === 0); 
+
+          if (prevEmpty && nextEmpty) {
+              flowerbed[i] = 1;  
+              count++;         
+              if (count >= n) {
+                  return true;  
+              }
+          }
+      }
+  }
+  }
+  
+  return false;  
+}
