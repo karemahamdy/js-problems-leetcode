@@ -538,3 +538,31 @@ let gcdOfStrings = function (str1, str2) {
   let gcdLength = gcd(str1.length, str2.length);
   return str1.substring(0, gcdLength);
 };
+
+// Odd Even Linked List
+function ListNode(val = 0, next = null) {
+  this.val = val;
+  this.next = next;
+}
+
+var oddEvenList = function (head) {
+  if (!head || !head.next || !head.next.next) {
+    return head;
+  }
+
+  let odd = head;
+  let even = head.next;
+  let evenHead = even;
+
+  while (even && even.next) {
+    odd.next = even.next;
+    odd = odd.next;
+
+    even.next = odd.next;
+    even = even.next;
+  }
+
+  odd.next = evenHead;
+
+  return head;
+};
