@@ -503,6 +503,7 @@ var isAnagram = function (s, t) {
   return true;
 };
 
+//
 // Delete the Middle Node of a Linked List
 
 var deleteMiddle = function (head) {
