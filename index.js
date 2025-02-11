@@ -728,3 +728,24 @@ var areAlmostEqual = function (s1, s2) {
     s1[diffs[0]] === s2[diffs[1]] &&
     s1[diffs[1]] === s2[diffs[0]];
 };
+
+// 1422. Maximum Score After Splitting a String
+// Given a string s of zeros and ones, return the maximum score after splitting the string into two non - empty substrings(i.e.left substring and right substring).
+// The score after splitting a string is the number of zeros in the left substring plus the number of ones in the right substring.
+
+var maxScore = function (s) {
+  let totalZeros = 0, zeros = 0, ans = -1, n = s.length;
+  for (let c of s) {
+    if (c === '0') totalZeros++;
+  }
+  for (let i = 1; i < n; i++) {
+    if (s[i - 1] === '0') {
+      zeros++;
+      totalZeros--;
+    }
+    ans = Math.max(ans, zeros + (n - totalZeros - i));
+  }
+  return ans;
+};
+
+
