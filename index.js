@@ -503,17 +503,27 @@ var isAnagram = function (s, t) {
   return true;
 };
 
-// GCD problem 
-// For two strings s and t, we say "t divides s" if and only if s = t + t + t + ... + t + t (i.e., t is concatenated with itself one or more times).
-// Given two strings str1 and str2, return the largest string x such that x divides both str1 and str2.
+//
+// Delete the Middle Node of a Linked List
 
-let gcdOfStrings = function(str1, str2) {
-  if ( str1 + str2 !== str2 + str1) return "" ;
-   function gcd(a, b) {
-     return b === 0 ? a : gcd(b, a % b);
- }
- let gcdLength =    gcd(str1.length, str2.length);
-return str1.substring(0, gcdLength);
+var deleteMiddle = function (head) {
+  if (!head || !head.next) return null;
+
+  let slow = head;
+  let fast = head;
+  let prev = null;
+
+  while (fast && fast.next) {
+    prev = slow;
+    slow = slow.next;
+    fast = fast.next.next;
+  }
+
+  if (prev) {
+    prev.next = slow.next;
+  }
+
+  return head;
 };
 
 // You have a long flowerbed in which some of the plots are planted, and some are not. However, flowers cannot be planted in adjacent plots.
@@ -538,8 +548,307 @@ function canPlaceFlowers(flowerbed, n) {
               }
           }
       }
+    }
   }
-  }
-  
-  return false;  
 }
+
+// GCD problem 
+// For two strings s and t, we say "t divides s" if and only if s = t + t + t + ... + t + t (i.e., t is concatenated with itself one or more times).
+// Given two strings str1 and str2, return the largest string x such that x divides both str1 and str2.
+let gcdOfStrings = function (str1, str2) {
+  if (str1 + str2 !== str2 + str1) return "";
+  function gcd(a, b) {
+    return b === 0 ? a : gcd(b, a % b);
+  }
+  let gcdLength = gcd(str1.length, str2.length);
+  return str1.substring(0, gcdLength);
+};
+
+// Odd Even Linked List
+function ListNode(val = 0, next = null) {
+  this.val = val;
+  this.next = next;
+}
+
+var oddEvenList = function (head) {
+  if (!head || !head.next || !head.next.next) {
+    return head;
+  }
+
+  let odd = head;
+  let even = head.next;
+  let evenHead = even;
+
+  while (even && even.next) {
+    odd.next = even.next;
+    odd = odd.next;
+
+    even.next = odd.next;
+    even = even.next;
+  }
+
+  odd.next = evenHead;
+
+  return head;
+};
+
+// 1726. Tuple with Same Product
+// Given an array nums of distinct positive integers, return the number of tuples(a, b, c, d) such that a * b = c * d where a, b, c, and d are elements of nums, and a != b != c != d.
+  // Example 1:
+// Input: nums = [2, 3, 4, 6]
+// Output: 8
+// Explanation: There are 8 valid tuples:
+// (2, 6, 3, 4), (2, 6, 4, 3), (6, 2, 3, 4), (6, 2, 4, 3)
+// (3, 4, 2, 6), (4, 3, 2, 6), (3, 4, 6, 2), (4, 3, 6, 2)
+  
+function tupleSameProduct(nums) {
+  let productMap = new Map();
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i + 1; j < nums.length; j++) {
+      let product = nums[i] * nums[j];
+      if (productMap.has(product)) {
+        productMap.set(product, productMap.get(product) + 1);
+      } else {
+        productMap.set(product, 1);
+      }
+    }
+  }
+
+  let result = 0;
+  for (let count of productMap.values()) {
+    if (count > 1) {
+
+      result += (count * (count - 1) / 2) * 8;
+    }
+  }
+  return result;
+}
+
+// 1790. Check if One String Swap Can Make Strings Equal
+// Hint
+// You are given two strings s1 and s2 of equal length.A string swap is an operation where you choose two indices in a string(not necessarily different) and swap the characters at these indices.
+// Return true if it is possible to make both strings equal by performing at most one string swap on exactly one of the strings.Otherwise, return false.
+
+var areAlmostEqual = function (s1, s2) {
+  if (s1 === s2) return true;
+
+  let diffs = [];
+  for (let i = 0; i < s1.length; i++) {
+    if (s1[i] !== s2[i]) diffs.push(i);
+  }
+
+  return diffs.length === 2 &&
+    s1[diffs[0]] === s2[diffs[1]] &&
+    s1[diffs[1]] === s2[diffs[0]];
+};
+
+// Maximum Ascending Subarray Sum
+// Given an array of positive integers nums, return the maximum possible sum of an ascending subarray in nums.
+// A subarray is defined as a contiguous sequence of numbers in an array.
+//A subarray[numsl, numsl + 1, ..., numsr - 1, numsr] is ascending if for all i where l <= i < r, numsi < numsi + 1. Note that a subarray of size 1 is ascending.
+
+var maxAscendingSum = function (nums) {
+  let maxNum = [0];
+  let currentNum = nums[0]
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] > nums[i - 1]) {
+      currentNum += nums[i]
+    } else {
+      maxNum = Math.max(maxNum, currentNum)
+      currentNum = nums[i]
+    }
+  }
+  return maxNum = Math.max(maxNum, currentNum)
+};
+
+// 3160. Find the Number of Distinct Colors Among the Balls
+
+// You are given an integer limit and a 2D array queries of size n x 2.
+// There are limit + 1 balls with distinct labels in the range[0, limit].Initially, all balls are uncolored.For every query in queries that is of the form[x, y], you mark ball x with the color y.After each query, you need to find the number of distinct colors among the balls.
+// Return an array result of length n, where result[i] denotes the number of distinct colors after ith query.
+// Note that when answering a query, lack of a color will not be considered as a color.
+
+/**
+ * @param {number} limit
+ * @param {number[][]} queries
+ * @return {number[]}
+ */
+var queryResults = function (limit, queries) {
+  const ballMapColor = new Map();
+  const colorMapCount = new Map();
+  const res = [];
+  let distinct = 0;
+
+  return queries.map(([ball, newColor]) => {
+    const color = ballMapColor.get(ball);
+    ballMapColor.set(ball, newColor);
+    if (color) {
+      colorMapCount.set(color, (colorMapCount.get(color) ?? 0) - 1);
+    }
+
+    if (!colorMapCount.get(newColor)) {
+      distinct++;
+    }
+
+    if (color && !colorMapCount.get(color)) {
+      distinct--;
+    }
+
+    const countNewColor = (colorMapCount.get(newColor) ?? 0)
+
+    colorMapCount.set(newColor, countNewColor + 1);
+
+    return distinct;
+  })
+
+  return res;
+};
+
+
+// 1726. Tuple with Same Product
+
+// Given an array nums of distinct positive integers, return the number of tuples(a, b, c, d) such that a * b = c * d where a, b, c, and d are elements of nums, and a != b != c != d.
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+function tupleSameProduct(nums) {
+  let productMap = new Map();
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i + 1; j < nums.length; j++) {
+      let product = nums[i] * nums[j];
+      if (productMap.has(product)) {
+        productMap.set(product, productMap.get(product) + 1);
+      } else {
+        productMap.set(product, 1);
+      }
+    }
+  }
+
+  let result = 0;
+  for (let count of productMap.values()) {
+    if (count > 1) {
+
+      result += (count * (count - 1) / 2) * 8;
+    }
+  }
+  return result;
+}
+
+// 1790. Check if One String Swap Can Make Strings Equal
+
+// You are given two strings s1 and s2 of equal length.A string swap is an operation where you choose two indices in a string(not necessarily different) and swap the characters at these indices.
+// Return true if it is possible to make both strings equal by performing at most one string swap on exactly one of the strings.Otherwise, return false.
+
+var areAlmostEqual = function (s1, s2) {
+  if (s1 === s2) return true;
+
+  let diffs = [];
+  for (let i = 0; i < s1.length; i++) {
+    if (s1[i] !== s2[i]) diffs.push(i);
+  }
+
+  return diffs.length === 2 &&
+    s1[diffs[0]] === s2[diffs[1]] &&
+    s1[diffs[1]] === s2[diffs[0]];
+};
+
+// 1422. Maximum Score After Splitting a String
+// Given a string s of zeros and ones, return the maximum score after splitting the string into two non - empty substrings(i.e.left substring and right substring).
+// The score after splitting a string is the number of zeros in the left substring plus the number of ones in the right substring.
+
+var maxScore = function (s) {
+  let totalZeros = 0, zeros = 0, ans = -1, n = s.length;
+  for (let c of s) {
+    if (c === '0') totalZeros++;
+  }
+  for (let i = 1; i < n; i++) {
+    if (s[i - 1] === '0') {
+      zeros++;
+      totalZeros--;
+    }
+    ans = Math.max(ans, zeros + (n - totalZeros - i));
+  }
+  return ans;
+};
+
+// Removing Stars From a String
+
+var removeStars = function (s) {
+  let arr = [];
+
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === '*') {
+      arr.splice(arr.length - 1, 1);
+    } else {
+      arr.push(s[i]);
+    }
+  }
+
+  return arr.join('');
+};
+
+
+// Count Number of Bad Pairs
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var countBadPairs = function (nums) {
+  let n = nums.length;
+  let totalPairs = (n * (n - 1)) / 2; // Total possible pairs
+  let goodPairs = 0;
+  let map = new Map();
+
+  for (let i = 0; i < n; i++) {
+    let key = nums[i] - i;
+    if (map.has(key)) {
+      goodPairs += map.get(key);
+      map.set(key, map.get(key) + 1);
+    } else {
+      map.set(key, 1);
+    }
+  }
+
+  return totalPairs - goodPairs;
+};
+
+// Remove All Occurrences of a Substring
+
+/**
+ * @param {string} s
+ * @param {string} part
+ * @return {string}
+ */
+var removeOccurrences = function (s, part) {
+  // iteration by part and replace it "" 
+  // return divider 
+  while (s.includes(part)) {
+    s = s.replace(part, "")
+  }
+  return s
+};
+
+// Clear Digits
+
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var clearDigits = function (s) {
+  let stack = [];
+
+  for (let i = 0; i < s.length; i++) {
+    if (!isNaN(s[i])) {
+      if (stack.length > 0) {
+        stack.pop();
+      }
+    } else {
+      stack.push(s[i]);
+    }
+  }
+
+  return stack.join('');
+};
