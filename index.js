@@ -827,3 +827,34 @@ var clearDigits = function (s) {
 
   return stack.join('');
 };
+
+// 2649. Nested Array Generator
+
+// Given a multi - dimensional array of integers, return a generator object which yields integers in the same order as inorder traversal.
+// A multi - dimensional array is a recursive data structure that contains both integers and other multi - dimensional arrays.
+// inorder traversal iterates over each array from left to right, yielding any integers it encounters or applying inorder traversal to any arrays it encounters.
+
+// Input: arr = [[[6]], [1, 3], []]
+// Output: [6, 1, 3]
+
+/**
+ * @param {Array} arr
+ * @return {Generator}
+ */
+var inorderTraversal = function* (arr) {
+
+  for (let item of arr) {
+    if (Array.isArray(item)) {
+      yield* inorderTraversal(item);
+    } else {
+      yield item
+    }
+  }
+};
+
+/**
+ * const gen = inorderTraversal([1, [2, 3]]);
+ * gen.next().value; // 1
+ * gen.next().value; // 2
+ * gen.next().value; // 3
+ */
