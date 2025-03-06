@@ -526,6 +526,31 @@ var deleteMiddle = function (head) {
   return head;
 };
 
+// You have a long flowerbed in which some of the plots are planted, and some are not. However, flowers cannot be planted in adjacent plots.
+// Given an integer array flowerbed containing 0's and 1's, where 0 means empty and 1 means not empty, and an integer n, return true if n new flowers can be planted in the flowerbed without violating the no-adjacent-flowers rule and false otherwise.
+
+function canPlaceFlowers(flowerbed, n) {
+  let count = 0; 
+  if (n === 0 ) {
+      return true
+  } else {
+  for (let i = 0; i < flowerbed.length; i++) {
+    
+      if (flowerbed[i] === 0) {
+               let prevEmpty = (i === 0 || flowerbed[i - 1] === 0); 
+          let nextEmpty = (i === flowerbed.length - 1 || flowerbed[i + 1] === 0); 
+
+          if (prevEmpty && nextEmpty) {
+              flowerbed[i] = 1;  
+              count++;         
+              if (count >= n) {
+                  return true;  
+              }
+          }
+      }
+    }
+  }
+}
 
 // GCD problem 
 // For two strings s and t, we say "t divides s" if and only if s = t + t + t + ... + t + t (i.e., t is concatenated with itself one or more times).
@@ -858,3 +883,49 @@ var inorderTraversal = function* (arr) {
  * gen.next().value; // 2
  * gen.next().value; // 3
  */
+// 3160. Find the Number of Distinct Colors Among the Balls
+
+// You are given an integer limit and a 2D array queries of size n x 2.
+// There are limit + 1 balls with distinct labels in the range [0, limit]. Initially, all balls are uncolored. For every query in queries that is of the form [x, y], you mark ball x with the color y. After each query, you need to find the number of colors among the balls.
+// Return an array result of length n, where result[i] denotes the number of colors after ith query.
+// Note that when answering a query, lack of a color will not be considered as a color.
+
+// Example 1:
+// Input: limit = 4, queries = [[1,4],[2,5],[1,3],[3,4]]
+// Output: [1,2,2,3]
+
+/**
+ * @param {number} limit
+ * @param {number[][]} queries
+ * @return {number[]}
+ */
+var queryResults = function(limit, queries) {
+  const ballMapColor = new Map();
+  const colorMapCount = new Map();
+  const res = [];
+  let distinct = 0;
+
+  return queries.map(([ball, newColor]) => {
+      const color = ballMapColor.get(ball);
+      ballMapColor.set(ball, newColor);
+      if (color) {
+          colorMapCount.set(color, (colorMapCount.get(color) ?? 0) - 1);
+      }
+      
+      if (!colorMapCount.get(newColor)) {
+          distinct ++;
+      }
+
+      if (color && !colorMapCount.get(color)) {
+          distinct --;
+      }
+
+      const countNewColor = (colorMapCount.get(newColor) ?? 0)
+
+      colorMapCount.set(newColor, countNewColor + 1);
+
+      return distinct;
+  })
+
+  return res;
+};
